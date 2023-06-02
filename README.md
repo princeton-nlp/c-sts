@@ -1,5 +1,7 @@
 # C-STS
 
+[[ArXiv]](https://arxiv.org/abs/2305.15093)
+
 ## Data
 
 
@@ -38,3 +40,15 @@ dataset = load_dataset(
 
 
 **Important: By using this dataset, you agree to not publicly share its unencrypted contents or decryption password.**
+
+## Citation
+```tex
+@misc{deshpande2023csts,
+      title={CSTS: Conditional Semantic Textual Similarity}, 
+      author={Ameet Deshpande and Carlos E. Jimenez and Howard Chen and Vishvak Murahari and Victoria Graf and Tanmay Rajpurohit and Ashwin Kalyan and Danqi Chen and Karthik Narasimhan},
+      year={2023},
+      eprint={2305.15093},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
