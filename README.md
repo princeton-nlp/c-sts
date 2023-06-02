@@ -5,7 +5,7 @@
 ## Data
 
 
-To avoid the intentional/unintentional scraping of the C-STS dataset that could impact the evaluation of LLM models trained from online data, we adopt the following approach for our dataset release.
+To avoid the intentional/unintentional scraping of the C-STS dataset for pre-training LLMs, which could cause training data contamination and impact their evaluation, we adopt the following approach for our dataset release.
 
 The dataset for C-STS is stored in an encrypted file named `csts.tar.enc`. To access the dataset, follow these steps:
 
