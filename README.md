@@ -2,13 +2,16 @@
 
 ## Data
 
+
+To avoid the intentional/unintentional scraping of the C-STS dataset that could impact the evaluation of LLM models trained from online data, we adopt the following approach for our dataset release.
+
 The dataset for C-STS is stored in an encrypted file named `csts.tar.enc`. To access the dataset, follow these steps:
 
 1. Request Access: Submit a request to obtain the decryption password by [clicking here](https://docs.google.com/forms/d/e/1FAIpQLSfoYig6I3qEBUBaNmzugnAKGpX1mSpM5cbGeO-dXq-u_sMPJQ/viewform?usp=sf_link). You will receive an email response with the password immediately.
 
 2. Decrypt the Dataset: Once you have received the password via email, you can decrypt the `csts.tar.enc` file using the provided `extract.sh` script. Follow the instructions below:
 
-   - Open a terminal and navigate to the directory where the file is located.
+   - Open a terminal and navigate to the directory where the `data` directory.
    - Run the following command, replacing `<password>` with the decryption password obtained via email:
 
      ```bash
@@ -26,12 +29,12 @@ dataset = load_dataset(
   'csv', 
   data_files=
   {
-    'train': 'csts_train.csv',
-    'validation': 'csts_validation.csv',
-    'test': 'csts_test.csv'
+    'train': 'data/csts_train.csv',
+    'validation': 'data/csts_validation.csv',
+    'test': 'data/csts_test.csv'
   }
 )
 ```
 
 
-**Important: By using this dataset, you agree to not publicly share its unencrypted contents.**
+**Important: By using this dataset, you agree to not publicly share its unencrypted contents or decryption password.**
