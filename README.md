@@ -34,4 +34,4 @@ dataset = load_dataset(
 ```
 
 
-**Important: By using this dataset, you agree not to publicly share it's unencrypted contents.**
+**Important: By using this dataset, you agree to not publicly share its unencrypted contents.**
