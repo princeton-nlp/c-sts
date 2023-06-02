@@ -12,10 +12,26 @@ The dataset for C-STS is stored in an encrypted file named `csts.tar.enc`. To ac
    - Run the following command, replacing `<password>` with the decryption password obtained via email:
 
      ```bash
-     ./extract.sh csts.tar.enc <password>
+     bash extract.sh csts.tar.enc <password>
      ```
     
     Provided the correct password, this step will generate three files `csts_train.csv`, `csts_validation.csv`, and `csts_test.csv`, the unencrypted dataset splits.
+
+You can load the data using [datasets](https://github.com/huggingface/datasets) with the following lines
+
+```python
+from datasets import load_dataset
+
+dataset = load_dataset(
+  'csv', 
+  data_files=
+  {
+    'train': 'csts_train.csv',
+    'validation': 'csts_validation.csv',
+    'test': 'csts_test.csv'
+  }
+)
+```
 
 
 **Important: By using this dataset, you agree not to publicly share it's unencrypted contents.**
