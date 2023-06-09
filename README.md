@@ -13,7 +13,7 @@ The dataset for C-STS is stored in an encrypted file named `csts.tar.enc`. To ac
 
 2. Decrypt the Dataset: Once you have received the password via email, you can decrypt the `csts.tar.enc` file using the provided `extract.sh` script. Follow the instructions below:
 
-   - Open a terminal and navigate to the directory where the `data` directory.
+   - Open a terminal and navigate to the `data` directory.
    - Run the following command, replacing `<password>` with the decryption password obtained via email:
 
      ```bash
