@@ -1,9 +1,8 @@
 # C-STS
 
-[[ArXiv]](https://arxiv.org/abs/2305.15093)
+This repository contains the dataset and code for the paper C-STS: Conditional Semantic Textual Similarity. [[ArXiv]](https://arxiv.org/abs/2305.15093)
 
 ## Data
-
 
 To avoid the intentional/unintentional scraping of the C-STS dataset for pre-training LLMs, which could cause training data contamination and impact their evaluation, we adopt the following approach for our dataset release.
 
@@ -38,8 +37,31 @@ dataset = load_dataset(
 )
 ```
 
-
 **Important: By using this dataset, you agree to not publicly share its unencrypted contents or decryption password.**
+
+## Code
+We provide the basic training scripts and utilities for finetuning and evaluating the models in the paper. The code is adapted from the [HuggingFace Transformers](www.huggingface.co/transformers) library. Refer to the [documentation](https://huggingface.co/transformers/) for more details.
+
+### Fine-tuning
+You can finetune the models described in the paper using the `run_sts.sh` script. For example, to finetune the `princeton-nlp/sup-simcse-roberta-base` model on the C-STS dataset, run the following command:
+
+```bash
+MODEL=princeton-nlp/sup-simcse-roberta-base \
+ENCODER_TYPE=bi_encoder \
+LR=1e-5 \
+WD=0.1 \
+TRANSFORM=False \
+OBJECTIVE=mse \
+OUTPUT_DIR=output \
+TRAIN_FILE=data/csts_train.csv \
+EVAL_FILE=data/csts_validation.csv \
+TEST_FILE=data/csts_test.csv \
+bash run_sts.sh
+```
+
+See `run_sts.sh` for a fuller description of the available options and default values.
+
+#### Hi
 
 ## Citation
 ```tex
