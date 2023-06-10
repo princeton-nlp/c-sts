@@ -1,11 +1,11 @@
 #!/bin/bash
-model=${MODEL:-princeton-nlp/sup-simcse-roberta-large}
-encoding=${ENCODER_TYPE:-bi_encoder}
-lr=${LR:-0.00001}
-wd=${WD:-0.1}
-transform=${TRANSFORM:-False}
-objective=${OBJECTIVE:-mse}
-triencoder_head=${TRIENCODER_HEAD:-None}
+model=${MODEL:-princeton-nlp/sup-simcse-roberta-large}  # pre-trained model
+encoding=${ENCODER_TYPE:-bi_encoder}  # cross_encoder, bi_encoder, tri_encoder
+lr=${LR:-1e-5}  # learning rate
+wd=${WD:-0.1}  # weight decay
+transform=${TRANSFORM:-False}  # whether to use an additional linear layer after the encoder
+objective=${OBJECTIVE:-mse}  # mse, triplet, triplet_mse
+triencoder_head=${TRIENCODER_HEAD:-None}  # hadamard, concat (set for tri_encoder)
 seed=${SEED:-42}
 output_dir=${OUTPUT_DIR:-output}
 config=enc_${encoding}__lr_${lr}__wd_${wd}__trans_${transform}__obj_${objective}__tri_${triencoder_head}__s_${seed}
@@ -31,8 +31,8 @@ python run_sts.py \
   --do_train \
   --do_eval \
   --evaluation_strategy epoch \
-  --per_device_train_batch_size 4 \
-  --gradient_accumulation_steps 8 \
+  --per_device_train_batch_size 8 \
+  --gradient_accumulation_steps 4 \
   --learning_rate ${lr} \
   --weight_decay ${wd} \
   --max_grad_norm 0.0 \

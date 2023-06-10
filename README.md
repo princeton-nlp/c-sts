@@ -43,6 +43,7 @@ dataset = load_dataset(
 We provide the basic training scripts and utilities for finetuning and evaluating the models in the paper. The code is adapted from the [HuggingFace Transformers](www.huggingface.co/transformers) library. Refer to the [documentation](https://huggingface.co/transformers/) for more details.
 
 ### Fine-tuning
+The current code supports finetuning any encoder-only model, using the `cross_encoder`, `bi_encoder`, or `tri_encoder` settings described in the paper.
 You can finetune the models described in the paper using the `run_sts.sh` script. For example, to finetune the `princeton-nlp/sup-simcse-roberta-base` model on the C-STS dataset, run the following command:
 
 ```bash
@@ -61,7 +62,6 @@ bash run_sts.sh
 
 See `run_sts.sh` for a fuller description of the available options and default values.
 
-#### Hi
 
 ## Citation
 ```tex

@@ -32,7 +32,7 @@ from transformers import (
 from utils.progress_logger import LogCallback
 from utils.sts.triplet_trainer import TripletTrainer
 from utils.sts.dataset_preprocessing import get_preprocessing_function
-from utils.sts.modeling_utils import get_model, add_args_to_config, DataCollatorWithPadding
+from utils.sts.modeling_utils import get_model, DataCollatorWithPadding
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s: %(message)s')
 
@@ -284,7 +284,6 @@ def main():
         use_auth_token=True if model_args.use_auth_token else None,
     )
     model_cls = get_model(model_args)
-    config = add_args_to_config(config, model_args, data_args)
     config.update(
         {
             'use_auth_token': model_args.use_auth_token,
@@ -375,6 +374,7 @@ def main():
     else:
         data_collator = DataCollatorWithPadding(
             pad_token_id=tokenizer.pad_token_id,
+            pad_token_type_id=tokenizer.pad_token_type_id,
             pad_to_multiple_of=8 if training_args.fp16 else None,
         )
     # Initialize our Trainer

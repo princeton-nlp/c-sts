@@ -26,6 +26,8 @@ def get_preprocessing_function(
             sent2_result = tokenizer(*sent2_args, padding=padding, max_length=max_seq_length, truncation=True)
             sent1_result['input_ids_2'] = sent2_result['input_ids']
             sent1_result['attention_mask_2'] = sent2_result['attention_mask']
+            if 'token_type_ids' in sent2_result:
+                sent1_result['token_type_ids_2'] = sent2_result['token_type_ids']
             sent1_result['labels'] = examples[similarity_key]
             if scale is not None:
                 _min, _max = scale
@@ -65,6 +67,9 @@ def get_preprocessing_function(
             sent1_result['attention_mask_2'] = sent2_result['attention_mask']
             sent1_result['input_ids_3'] = sent3_result['input_ids']
             sent1_result['attention_mask_3'] = sent3_result['attention_mask']
+            if 'token_type_ids' in sent2_result:
+                sent1_result['token_type_ids_2'] = sent2_result['token_type_ids']
+                sent1_result['token_type_ids_3'] = sent3_result['token_type_ids']
             sent1_result['labels'] = examples[similarity_key]
             if scale is not None:
                 _min, _max = scale
