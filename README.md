@@ -60,7 +60,27 @@ TEST_FILE=data/csts_test.csv \
 bash run_sts.sh
 ```
 
-See `run_sts.sh` for a fuller description of the available options and default values.
+See `run_sts.sh` for a full description of the available options and default values.
+
+### Few-shot Evaluation
+The script `run_sts_fewshot.sh` can be used to evaluate large language-models in a few-shot setting with or without instructions. For example, to evaluate the `google/flan-t5-xxl` model on the C-STS dataset, run the following command:
+
+```bash
+python run_sts_fewshot.py \
+--model_name_or_path google/flan-t5-xxl \
+--k_shot 2 \
+--prompt_name long \
+--train_file data/csts_train.csv \
+--validation_file data/csts_validation.csv \
+--test_file data/csts_test.csv \
+--output_dir output/flan-t5-xxl/k2_long \
+--dtype tf32 \
+--batch_size 4
+```
+
+To accommodate large model types `run_sts_fewshot.sh` will use all visible GPUs to load the model in model parallel. For smaller models set `CUDA_VISIBLE_DEVICES` to the desired GPU ids.
+
+Run `python run_sts_fewshot.py --help` for a full description of additional options and default values.
 
 
 ## Citation
