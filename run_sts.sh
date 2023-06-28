@@ -30,6 +30,7 @@ python run_sts.py \
   --sentences_only False \
   --do_train \
   --do_eval \
+  --do_predict \
   --evaluation_strategy epoch \
   --per_device_train_batch_size 8 \
   --gradient_accumulation_steps 4 \
