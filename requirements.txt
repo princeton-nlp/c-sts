@@ -1,0 +1,8 @@
+accelerate>=0.20.3
+datasets>=2.11.0
+huggingface_hub>=0.13.4
+openai>=0.27.7
+pandas>=2.0.0
+scipy>=1.11.1
+torch>=2.0.0
+transformers>=4.28.1
