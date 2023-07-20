@@ -83,6 +83,23 @@ To accommodate large model types `run_sts_fewshot.sh` will use all visible GPUs 
 Run `python run_sts_fewshot.py --help` for a full description of additional options and default values.
 
 
+### Submitting Test Results
+You can scores for your model on the test set by submitting your predictions using the `make_test_submission.py` script as follows:
+
+```bash
+python make_test_submission.py your_email@email.com /path/to/your/predictions.json
+```
+
+This script expects the test predictions file to be in the format generated automatically by the scripts above; i.e.
+  
+  ```json
+  {
+    0: 1.0,
+    1: 0.0,
+    ...
+    4731: 0.5
+  }
+
 ## Citation
 ```tex
 @misc{deshpande2023csts,
