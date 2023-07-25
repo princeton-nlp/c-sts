@@ -99,6 +99,10 @@ This script expects the test predictions file to be in the format generated auto
     ...
     4731: 0.5
   }
+  ```
+
+After submission your results will be emailed to the submitted email address.
+
 
 ## Citation
 ```tex
