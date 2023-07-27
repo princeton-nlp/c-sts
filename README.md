@@ -101,7 +101,7 @@ This script expects the test predictions file to be in the format generated auto
   }
   ```
 
-After submission your results will be emailed to the submitted email address.
+After submission your results will be emailed to the submitted email address with the relevant filename in the subject.
 
 
 ## Citation

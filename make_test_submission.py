@@ -2,11 +2,12 @@ import argparse
 import json
 import subprocess
 
-def send_post_request(email, predictions):
+def send_post_request(email, predictions, filename):
     # Prepare the data to be sent
     data = {
         'email': email,
-        'predictions': predictions
+        'predictions': predictions,
+        'filename': filename,
     }
     data_str = json.dumps(data)
     command = [
@@ -23,7 +24,7 @@ def main(email, predictions_file):
     preds = json.load(open(predictions_file, 'r'))
     keys, preds = zip(*sorted(preds.items(), key=lambda x: int(x[0])))
     assert len(keys) == 4732, "There should be exactly 4732 predictions, but got {}".format(len(keys))
-    send_post_request(email, preds)
+    send_post_request(email, preds, predictions_file)
 
 
 if __name__ == "__main__":
