@@ -94,10 +94,10 @@ This script expects the test predictions file to be in the format generated auto
   
   ```json
   {
-    0: 1.0,
-    1: 0.0,
+    "0": 1.0,
+    "1": 0.0,
     ...
-    4731: 0.5
+    "4731": 0.5
   }
   ```
 
