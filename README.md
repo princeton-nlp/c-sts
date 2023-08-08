@@ -105,7 +105,7 @@ This script expects the test predictions file to be in the format generated auto
   {
     "0": 1.0,
     "1": 0.0,
-    "...": 0.0,
+    "...":
     "4731": 0.5
   }
   ```
