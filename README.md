@@ -2,7 +2,16 @@
 
 This repository contains the dataset and code for the paper C-STS: Conditional Semantic Textual Similarity. [[ArXiv]](https://arxiv.org/abs/2305.15093)
 
-## Data
+
+## Table of Contents
+- [Data](#data)
+- [Code](#code)
+  - [Fine-tuning](#fine-tuning)
+  - [Few-shot Evaluation](#few-shot-evaluation)
+  - [Submitting Test Results](#submitting-test-results)
+- [Citation](#citation)
+
+## Data <a name="data"></a>
 
 To avoid the intentional/unintentional scraping of the C-STS dataset for pre-training LLMs, which could cause training data contamination and impact their evaluation, we adopt the following approach for our dataset release.
 
@@ -39,10 +48,10 @@ dataset = load_dataset(
 
 **Important: By using this dataset, you agree to not publicly share its unencrypted contents or decryption password.**
 
-## Code
+## Code <a name="code"></a>
 We provide the basic training scripts and utilities for finetuning and evaluating the models in the paper. The code is adapted from the [HuggingFace Transformers](www.huggingface.co/transformers) library. Refer to the [documentation](https://huggingface.co/transformers/) for more details.
 
-### Fine-tuning
+### Fine-tuning <a name="fine-tuning"></a>
 The current code supports finetuning any encoder-only model, using the `cross_encoder`, `bi_encoder`, or `tri_encoder` settings described in the paper.
 You can finetune the models described in the paper using the `run_sts.sh` script. For example, to finetune the `princeton-nlp/sup-simcse-roberta-base` model on the C-STS dataset, run the following command:
 
@@ -62,7 +71,7 @@ bash run_sts.sh
 
 See `run_sts.sh` for a full description of the available options and default values.
 
-### Few-shot Evaluation
+### Few-shot Evaluation <a name="few-shot-evaluation"></a>
 The script `run_sts_fewshot.sh` can be used to evaluate large language-models in a few-shot setting with or without instructions. For example, to evaluate the `google/flan-t5-xxl` model on the C-STS dataset, run the following command:
 
 ```bash
@@ -83,7 +92,7 @@ To accommodate large model types `run_sts_fewshot.sh` will use all visible GPUs 
 Run `python run_sts_fewshot.py --help` for a full description of additional options and default values.
 
 
-### Submitting Test Results
+### Submitting Test Results <a name="submitting-test-results"></a>
 You can scores for your model on the test set by submitting your predictions using the `make_test_submission.py` script as follows:
 
 ```bash
@@ -104,7 +113,7 @@ This script expects the test predictions file to be in the format generated auto
 After submission your results will be emailed to the submitted email address with the relevant filename in the subject.
 
 
-## Citation
+## Citation <a name="citation"></a>
 ```tex
 @misc{deshpande2023csts,
       title={CSTS: Conditional Semantic Textual Similarity}, 
