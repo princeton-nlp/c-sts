@@ -9,7 +9,8 @@ def send_post_request(email, predictions, filename):
         'predictions': predictions,
         'filename': filename,
     }
-    data_str = json.dumps(data)
+    payload = {'body': data}
+    data_str = json.dumps(payload)
     command = [
         'curl', '-v', '-X', 'POST',
         'https://rcxnewlbk5.execute-api.us-east-2.amazonaws.com/test/eval-csts',
