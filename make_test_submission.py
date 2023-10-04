@@ -1,6 +1,6 @@
 import argparse
 import json
-import subprocess
+import requests
 
 def send_post_request(email, predictions, filename):
     # Prepare the data to be sent
@@ -9,22 +9,24 @@ def send_post_request(email, predictions, filename):
         'predictions': predictions,
         'filename': filename,
     }
-    payload = {'body': data}
-    data_str = json.dumps(payload)
-    command = [
-        'curl', '-v', '-X', 'POST',
-        'https://rcxnewlbk5.execute-api.us-east-2.amazonaws.com/test/eval-csts',
-        '-H', 'content-type: application/json',
-        '-d', data_str
-    ]
-    result = subprocess.run(command, stdout=subprocess.PIPE)
-    print(result.stdout.decode('utf-8'))
+    data_str = json.dumps({'body': json.dumps(data)})
+    headers = {'content-type': 'application/json'}
+
+    url = 'https://rcxnewlbk5.execute-api.us-east-2.amazonaws.com/test/eval-csts'
+    
+    response = requests.post(url, headers=headers, data=data_str)
+    
+    print(response.text)
 
 
 def main(email, predictions_file):
-    preds = json.load(open(predictions_file, 'r'))
+    with open(predictions_file, 'r') as f:
+        preds = json.load(f)
+
     keys, preds = zip(*sorted(preds.items(), key=lambda x: int(x[0])))
-    assert len(keys) == 4732, "There should be exactly 4732 predictions, but got {}".format(len(keys))
+    
+    assert len(keys) == 4732, f"There should be exactly 4732 predictions, but got {len(keys)}"
+    
     send_post_request(email, preds, predictions_file)
 
 
