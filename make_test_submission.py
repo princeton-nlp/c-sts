@@ -7,6 +7,8 @@ from pathlib import Path
 
 def send_post_request(email, predictions, filename):
     # Prepare the data to be sent
+    if len(filename) > 200:
+        raise ValueError('Submission name (%s) longer than 200 characters. Please choose a shorter filename or set the name with --name' % filename)
     data = {
         'email': email,
         'predictions': predictions,
@@ -26,7 +28,7 @@ def main(email, predictions_file, name):
     predictions_file = Path(predictions_file).resolve(strict=True)
     if name is None:
         name = predictions_file.as_posix()
-    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+    if not re.match(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+(?:[A-Za-z0-9.-]+)*\b", email):
         raise ValueError("Email %s is invalid" % email)
     with open(predictions_file, 'r') as f:
         preds = json.load(f)
