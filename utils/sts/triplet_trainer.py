@@ -52,12 +52,12 @@ class TripletBatchSampler(Sampler[List[int]]):
                 drop_count += len(pairs[pair_idx])
                 pairs.pop(pair_idx)
         logger.warning('Dropping %d indices for missing pairs. Dataset has %d pairs total' % (drop_count, len(pair_idxs)))
-        pairs = list(map(lambda x: sorted(pairs[x], key=lambda idx: -dataset[idx]['Answer.Similarity']), pairs.keys()))
+        pairs = list(map(lambda x: sorted(pairs[x], key=lambda idx: -dataset[idx]['label']), pairs.keys()))
                      # negative because we want to sort in descending order (highest similarity first)
         for idx1, idx2 in pairs:
             if (dataset[idx1][sentence1_key] != dataset[idx2][sentence1_key]) or (dataset[idx1][sentence2_key] != dataset[idx2][sentence2_key]):
                 raise ValueError('Pairing of indices is incorrect, sentences do not match for pair %d and %d' % (idx1, idx2))
-            if (dataset[idx1]['Answer.Similarity'] < dataset[idx2]['Answer.Similarity']):
+            if (dataset[idx1]['label'] < dataset[idx2]['label']):
                 raise ValueError('Pairing of indices is incorrect, similarity is not in descending order for pair %d and %d' % (idx1, idx2))
         return pairs
 
@@ -94,8 +94,8 @@ class TripletTrainer(Trainer):
             data_collator = self._get_collator_with_removed_columns(data_collator, description='training')
         train_sampler = TripletBatchSampler(
             self.args.train_batch_size,
-            'Input.sent_1',
-            'Input.sent_2',
+            'sentence1',
+            'sentence2',
             self,
         )
         return DataLoader(
