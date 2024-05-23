@@ -16,11 +16,19 @@ def send_post_request(email, predictions, filename):
     }
     data_str = json.dumps({'body': json.dumps(data)})
     headers = {'content-type': 'application/json'}
-    url = 'https://rcxnewlbk5.execute-api.us-east-2.amazonaws.com/test/eval-csts'
+    # url = 'https://rcxnewlbk5.execute-api.us-east-2.amazonaws.com/test/eval-csts'
+    url = "https://0sy74d2tog.execute-api.us-east-2.amazonaws.com/dev/c-sts-eval-lambda"
+    # Create the request object
+    request_object = {
+        "url": url,
+        "headers": headers,
+        "data": data
+    }
+    json.dump(request_object, open('request.json', 'w'), indent=4)
     response = requests.post(url, headers=headers, data=data_str)    
-    print(response.text)
     if response.status_code == 200:
-        print("Successfully sent the request")
+        print("Evaluation successful!")
+        print(response.json()['body'])
         print("See email: \"C-STS Evaluation Results for %s\"" % filename)
 
 
